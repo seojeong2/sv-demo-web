@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1>Test Page</h1>
+    <button @click="fetchData">Fetch Data</button>
+    <p> {{ apiResponse }}</p>
+</div>
+
+</body>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+<script type="text/javascript">
+    (function() {
+        new Vue({
+            el: "#app",
+            data: {
+                apiResponse: '',
+            },
+            created: function() {
+                console.log("page created");
+            },
+            methods: {
+                fetchData() {
+                    // axios 요청
+                    $.ajax({
+                        url:'/data',
+                        method:'GET',
+                        success: (data) =>{
+                            this.apiResponse = data;
+                        },
+                        error: (error) => {
+                            console.error("API 호출중 오류 발생", error)
+                        }
+                    })
+                }
+            }
+        })
+    })();
+
+</script>
+</html>
+

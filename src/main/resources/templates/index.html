@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+<!--    <link rel="stylesheet" href="/css/bootstrap.min.css">-->
+</head>
+<body>
+
+<div id="app">
+    <div th:replace="fragments/header :: header"></div>
+
+    <div class="card text-center">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+
+                <li class="nav-item" v-for="item in navigationItems" :key="item.id">
+                    <a class="nav-link" :class="{'active':item.isActive}" @click="setActiveItem(item)">{{item.label}}</a>
+                </li>
+
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link active" aria-current="true" href="/">화자 인증</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/">화자분류</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                </li>-->
+            </ul>
+        </div>
+        <div class="card-body" style="height: 70vh">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+        </div>
+    </div>
+
+
+
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+
+
+    (function() {
+        new Vue({
+            el: "#app",
+            data: {
+
+
+                navigationItems: [
+                    {id:1, label:'화자인증', isActive: true},
+                    {id:2, label: '화자분류', isActive: false}
+                ],
+                // content:'v1.html content',
+                content:'Verification.html content',
+                selectedPage: 'v1',
+
+            },
+            methods: {
+                setActiveItem(selectedItem) {
+                  // 선택한 네비게이션 항목에 대해 활성 여부를 변경
+                  this.navigationItems.forEach(item => {
+                      item.isActive = item === selectedItem;
+                  });
+
+                  // 선택한 네비게이션 항목의 컴포넌트를 activeItem에 설정
+                },
+                selectPage() {
+                    this.selectedPage = page;
+                    this.updateContent();
+                },
+                updateContent() {
+                    this.content = this.selectedPage == "v1" ? 'v1.html content': 'v2.html content';
+
+                },
+                scrollTo(section) {
+                    const element = document.getElementById(section);
+                    if (element) {
+                        element.scrollIntoView({behavior: 'smooth'})
+                    }
+                }
+            }
+        })
+    })();
+</script>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js with Spring Boot</title>
+</head>
+<body>
+<div> <h1> {{ message }}</h1></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script>
+
+    import axios from 'axios';
+
+    export default {
+        data() {
+            return {
+                message: 'Loading data...',
+            }
+        },
+
+        mounted() {
+            const apiUrl = 'http://localhost:8080/api/data';
+            axios.get(apiUrl)
+                .then((response) => {
+                    this.message = response.data.message;
+                })
+                .catch((error) => {
+                    console.error("에러 발생, 데이터로드 실패", error);
+                })
+        }
+    }
+
+
+</script>
+</body>
+</html>

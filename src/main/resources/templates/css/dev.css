@@ -1,0 +1,23 @@
+.App-header{
+    min-height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: black;
+    text-align: center;
+}
+.App-header p {
+    font-size: 50px;
+    margin: 0;
+}
+
+.App-header ul {
+    list-style: none;
+    padding: 0;
+}
+.App-header li {
+    display: inline-block;
+    margin: 0 10px;
+}
